@@ -39,4 +39,13 @@ public class HandicapCalculator {
 		}
 		return 10 - sum - 6 * Math.exp(-Math.pow(5 * faceDiameter / 20 + 0.357, 2));
 	}
+
+	public static double getWorsterAverageScore(double handicap, double range, double faceDiameter, boolean rangeIsYards) {
+		double sum = 0;
+		double rms = getRMS(handicap, range, rangeIsYards);
+		for(int i=1; i<=5; i++){
+			sum += Math.exp(-Math.pow(i * faceDiameter / 10 + 0.357, 2) / Math.pow(rms, 2));
+		}
+		return 5 - sum;
+	}
 }
