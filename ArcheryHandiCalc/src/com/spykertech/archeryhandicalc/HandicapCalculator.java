@@ -48,4 +48,22 @@ public class HandicapCalculator {
 		}
 		return 5 - sum;
 	}
+
+	public static double getFITAInnerTenAverageScore(double handicap, double range, double faceDiameter, boolean rangeIsYards) {
+		double sum = 0;
+		double rms = getRMS(handicap, range, rangeIsYards);
+		for(int i=2; i<=10; i++) {
+			sum += Math.exp(-Math.pow(i * faceDiameter / 20 + 0.357, 2) / Math.pow(rms, 2));
+		}
+		return 10 - Math.exp(-Math.pow(faceDiameter / 40 + 0.357, 2) / Math.pow(rms, 2)) - sum;
+	}
+
+	public static double getFiveZoneInnerTenAverageScore(double handicap, double range, double faceDiameter, boolean rangeIsYards) {
+		double sum = 0;
+		double rms = getRMS(handicap, range, rangeIsYards);
+		for(int i=2; i<=4; i++) {
+			sum += Math.exp(-Math.pow(i * faceDiameter / 20 + 0.357, 2) / Math.pow(rms, 2));
+		}
+		return 10 - Math.exp(-Math.pow(faceDiameter / 40 + 0.357, 2) / Math.pow(rms, 2)) - sum - 6 * Math.exp(-Math.pow(5 * faceDiameter / 20 + 0.357, 2) / Math.pow(rms, 2));
+	}
 }
