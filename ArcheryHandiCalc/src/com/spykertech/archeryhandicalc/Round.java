@@ -15,4 +15,8 @@ public class Round {
 	public String toString() {
 		return name;
 	}
+
+	public void addDistance(Distance dist) {
+		
+	}
 }
