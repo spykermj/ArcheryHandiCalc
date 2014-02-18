@@ -1,5 +1,6 @@
 package com.spykertech.archeryhandicalc;
 
+
 public class Distance {
 	private double range;
 	private TargetFace face;

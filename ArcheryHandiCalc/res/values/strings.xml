@@ -8,11 +8,4 @@
     <string name="score_label">Score</string>
     <string name="handicap_label">Handicap</string>
 
-    <string-array name="bowtype_arrays">
-        <item>Recurve</item>
-        <item>Compound</item>
-        <item>Barebow</item>
-        <item>Longbow</item>
-    </string-array>
-
 </resources>
