@@ -1,6 +1,7 @@
 package com.spykertech.archeryhandicalc;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.os.Bundle;
@@ -47,6 +48,11 @@ public class MainActivity extends Activity implements OnKeyListener {
 		fita18.addDistance(dist);
 		list.add(portsmouth);
 		list.add(fita18);
+		Round portsmouthCpd = new Round("Portsmouth Compound");
+		dist = new Distance(20, TargetFace.FITA60, ScoringStyle.TEN_ZONE_COMPOUND, false, 60);
+		portsmouthCpd.addDistance(dist);
+		list.add(portsmouthCpd);
+		Collections.sort(list);
 		ArrayAdapter<Round> dataAdapter = new ArrayAdapter<Round>(this, android.R.layout.simple_spinner_item, list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		roundSpinner.setAdapter(dataAdapter);

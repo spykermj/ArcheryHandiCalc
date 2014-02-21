@@ -3,7 +3,7 @@ package com.spykertech.archeryhandicalc;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Round {
+public class Round implements Comparable<Round> {
 	
 	private String name;
 	private List<Distance> distances = new ArrayList<Distance>();
@@ -61,5 +61,10 @@ public class Round {
 			}
 		}
 		return handicap;
+	}
+
+	@Override
+	public int compareTo(Round another) {
+		return this.getName().compareTo(another.getName());
 	}
 }
