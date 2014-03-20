@@ -159,7 +159,7 @@ public class MainActivity extends Activity implements OnKeyListener {
 		round.addDistance(dist);
 		list.add(round);
 		round = new Round("FITA 50 10-6");
-		dist = new Distance(70, TargetFace.FITA80, ScoringStyle.IMPERIAL, true, 72);
+		dist = new Distance(50, TargetFace.FITA80, ScoringStyle.FIVE_ZONE, true, 72);
 		round.addDistance(dist);
 		list.add(round);
 		round = new Round("Half FITA (Gents)");
