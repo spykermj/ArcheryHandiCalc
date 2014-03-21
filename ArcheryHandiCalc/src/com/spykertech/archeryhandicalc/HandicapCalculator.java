@@ -37,7 +37,7 @@ public class HandicapCalculator {
 		for(int i=1; i<=4; i++){
 			sum += Math.exp(-Math.pow(i * faceDiameter / 20 + 0.357, 2) / Math.pow(rms, 2));
 		}
-		return 10 - sum - 6 * Math.exp(-Math.pow(5 * faceDiameter / 20 + 0.357, 2));
+		return 10 - sum - 6 * Math.exp(-Math.pow(5 * faceDiameter / 20 + 0.357, 2) / Math.pow(rms, 2));
 	}
 
 	public static double getWorcesterAverageScore(double handicap, double range, double faceDiameter, boolean rangeIsMeters) {

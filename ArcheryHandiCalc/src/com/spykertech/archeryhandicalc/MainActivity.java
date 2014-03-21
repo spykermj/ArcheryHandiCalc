@@ -28,7 +28,7 @@ public class MainActivity extends Activity implements OnKeyListener {
 		input = (EditText) findViewById(R.id.editText1);
 		output = (TextView) findViewById(R.id.textView5);
 		input.setOnKeyListener(this);
-		buildRoundList();
+		buildRoundSpinner();
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class MainActivity extends Activity implements OnKeyListener {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
-	public void buildRoundList() {
+	
+	public List<Round> buildRoundList(){
 		List<Round> list = new ArrayList<Round>();
 		Round round = new Round("Portsmouth");
 		Distance dist = new Distance(20, TargetFace.FITA60, ScoringStyle.TEN_ZONE, false, 60);
@@ -151,15 +151,19 @@ public class MainActivity extends Activity implements OnKeyListener {
 		round.addDistance(dist);
 		list.add(round);
 		round = new Round("FITA 70");
-		dist = new Distance(70, TargetFace.FITA122, ScoringStyle.IMPERIAL, true, 72);
+		dist = new Distance(70, TargetFace.FITA122, ScoringStyle.TEN_ZONE, true, 72);
 		round.addDistance(dist);
 		list.add(round);
 		round = new Round("FITA 60");
-		dist = new Distance(60, TargetFace.FITA122, ScoringStyle.IMPERIAL, true, 72);
+		dist = new Distance(60, TargetFace.FITA122, ScoringStyle.TEN_ZONE, true, 72);
 		round.addDistance(dist);
 		list.add(round);
 		round = new Round("FITA 50 10-6");
 		dist = new Distance(50, TargetFace.FITA80, ScoringStyle.FIVE_ZONE, true, 72);
+		round.addDistance(dist);
+		list.add(round);
+		round = new Round("FITA 50");
+		dist = new Distance(50, TargetFace.FITA80, ScoringStyle.TEN_ZONE, true, 72);
 		round.addDistance(dist);
 		list.add(round);
 		round = new Round("Half FITA (Gents)");
@@ -523,6 +527,11 @@ public class MainActivity extends Activity implements OnKeyListener {
 		round.addDistance(dist);
 		list.add(round);
 		Collections.sort(list);
+		return list;
+	}
+
+	public void buildRoundSpinner() {
+		List<Round> list = buildRoundList();
 		ArrayAdapter<Round> dataAdapter = new ArrayAdapter<Round>(this, android.R.layout.simple_spinner_item, list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		roundSpinner.setAdapter(dataAdapter);

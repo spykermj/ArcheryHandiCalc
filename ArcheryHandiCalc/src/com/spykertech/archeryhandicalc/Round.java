@@ -51,7 +51,7 @@ public class Round implements Comparable<Round> {
 		int[] table = this.getHandicapTable();
 		int handicap = -1;
 		for(int i=0; i<=100; i++) {
-			if(score > table[i]){
+			if(score >= table[i]){
 				if(i-1 >= 0 && score == table[i-1]){
 					handicap = i-1;
 				} else {
