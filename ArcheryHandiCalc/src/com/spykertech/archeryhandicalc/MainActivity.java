@@ -39,9 +39,40 @@ public class MainActivity extends Activity implements OnKeyListener {
 	}
 	
 	public List<Round> buildRoundList(){
-		List<Round> list = new ArrayList<Round>();
-		Round round = new Round("Portsmouth");
-		Distance dist = new Distance(20, TargetFace.FITA60, ScoringStyle.TEN_ZONE, false, 60);
+		List<Round> list;
+		Round round;
+		Distance dist;
+		list = new ArrayList<Round>();
+		round = new Round("252 @  20");
+		dist = new Distance(20, TargetFace.FITA122, ScoringStyle.IMPERIAL, false, 36);
+		round.addDistance(dist);
+		list.add(round);
+		round = new Round("252 @  30");
+		dist = new Distance(30, TargetFace.FITA122, ScoringStyle.IMPERIAL, false, 36);
+		round.addDistance(dist);
+		list.add(round);
+		round = new Round("252 @  40");
+		dist = new Distance(40, TargetFace.FITA122, ScoringStyle.IMPERIAL, false, 36);
+		round.addDistance(dist);
+		list.add(round);
+		round = new Round("252 @  50");
+		dist = new Distance(50, TargetFace.FITA122, ScoringStyle.IMPERIAL, false, 36);
+		round.addDistance(dist);
+		list.add(round);
+		round = new Round("252 @  60");
+		dist = new Distance(60, TargetFace.FITA122, ScoringStyle.IMPERIAL, false, 36);
+		round.addDistance(dist);
+		list.add(round);
+		round = new Round("252 @  80");
+		dist = new Distance(80, TargetFace.FITA122, ScoringStyle.IMPERIAL, false, 36);
+		round.addDistance(dist);
+		list.add(round);
+		round = new Round("252 @ 100");
+		dist = new Distance(100, TargetFace.FITA122, ScoringStyle.IMPERIAL, false, 36);
+		round.addDistance(dist);
+		list.add(round);
+		round = new Round("Portsmouth");
+		dist = new Distance(20, TargetFace.FITA60, ScoringStyle.TEN_ZONE, false, 60);
 		round.addDistance(dist);
 		list.add(round);
 		round = new Round("FITA 18");
