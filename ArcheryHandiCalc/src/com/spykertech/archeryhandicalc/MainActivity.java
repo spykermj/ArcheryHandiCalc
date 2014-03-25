@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.KeyEvent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
-import android.view.View;
-import android.view.View.OnKeyListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class MainActivity extends Activity implements OnKeyListener {
+public class MainActivity extends Activity {
 	private Spinner roundSpinner;
 	private EditText input;
 	private TextView output;
@@ -27,7 +26,29 @@ public class MainActivity extends Activity implements OnKeyListener {
 		roundSpinner = (Spinner) findViewById(R.id.spinner1);
 		input = (EditText) findViewById(R.id.editText1);
 		output = (TextView) findViewById(R.id.textView5);
-		input.setOnKeyListener(this);
+		input.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start,
+					int count, int after) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				// TODO Auto-generated method stub
+				lookupHandicap();
+			}
+			
+		});
 		buildRoundSpinner();
 	}
 
@@ -567,16 +588,13 @@ public class MainActivity extends Activity implements OnKeyListener {
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		roundSpinner.setAdapter(dataAdapter);
 	}
-
-	@Override
-	public boolean onKey(View view, int keyCode, KeyEvent event) {
+	
+	public void lookupHandicap() {
 		roundSpinner = (Spinner) findViewById(R.id.spinner1);
 		Round round = (Round) roundSpinner.getSelectedItem();
 		try {
 			output.setText(String.format("%d", round.lookupHandicap(Integer.parseInt(input.getText().toString()))));
 		} catch (Exception e) {
-			
-		}
-		return false;
+		}		
 	}
 }
