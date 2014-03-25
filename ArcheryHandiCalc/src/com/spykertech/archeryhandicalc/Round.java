@@ -50,13 +50,9 @@ public class Round implements Comparable<Round> {
 	public int lookupHandicap(int score) {
 		int[] table = this.getHandicapTable();
 		int handicap = -1;
-		for(int i=0; i<=100; i++) {
-			if(score >= table[i]){
-				if(i-1 >= 0 && score == table[i-1]){
-					handicap = i-1;
-				} else {
-					handicap = i;
-				}
+		for(int i=100; i>=0 && score >= table[i]; i--) {
+			handicap = i;
+			if(score == table[i]) {
 				break;
 			}
 		}
