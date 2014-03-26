@@ -63,4 +63,14 @@ public class Round implements Comparable<Round> {
 	public int compareTo(Round another) {
 		return this.getName().compareTo(another.getName());
 	}
+
+	public int getMaxScore() {
+		int maxScore = 0;
+		
+		for(Distance dist:getDistances()){
+			maxScore += dist.getMaxScore();
+		}
+		
+		return maxScore;
+	}
 }

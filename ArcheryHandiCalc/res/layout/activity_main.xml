@@ -38,7 +38,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/score_hint"
-            android:inputType="number" >
+            android:inputType="number"
+            android:background="@android:drawable/edit_text">
 
             <requestFocus />
         </EditText>
@@ -47,15 +48,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="@string/handicap_label"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
         <TextView
             android:id="@+id/textView5"
             android:layout_width="0dip"

@@ -9,12 +9,15 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnItemSelectedListener {
 	private Spinner roundSpinner;
 	private EditText input;
 	private TextView output;
@@ -24,27 +27,25 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		roundSpinner = (Spinner) findViewById(R.id.spinner1);
+		roundSpinner.setOnItemSelectedListener(this);
 		input = (EditText) findViewById(R.id.editText1);
 		output = (TextView) findViewById(R.id.textView5);
 		input.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-				// TODO Auto-generated method stub
 				
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start,
 					int count, int after) {
-				// TODO Auto-generated method stub
 				
 			}
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				// TODO Auto-generated method stub
 				lookupHandicap();
 			}
 			
@@ -590,11 +591,40 @@ public class MainActivity extends Activity {
 	}
 	
 	public void lookupHandicap() {
+		input.setError(null);
 		roundSpinner = (Spinner) findViewById(R.id.spinner1);
 		Round round = (Round) roundSpinner.getSelectedItem();
-		try {
-			output.setText(String.format("%d", round.lookupHandicap(Integer.parseInt(input.getText().toString()))));
-		} catch (Exception e) {
-		}		
+		String scoreString = input.getText().toString();
+		if(scoreString.length() > 0) {
+			int score = Integer.parseInt(input.getText().toString());
+			int maxScore = round.getMaxScore();
+			if(score <= maxScore) {
+				try {
+					int handicap = round.lookupHandicap(score);
+					if(handicap != -1) {
+						output.setText(String.format("%d", handicap));
+					} else {
+						input.setError("Value is too low to register a handicap");
+						output.setText("");
+					}
+				} catch (Exception e) {
+					output.setText("");
+				}
+			} else {
+				input.setError("Value is greater than maximum possible score");
+			}
+		} else {
+			output.setText("");
+		}
 	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+		lookupHandicap();
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {
+		
+	}	
 }

@@ -44,4 +44,20 @@ public class Distance {
 		return score;
 	}
 
+	public int getMaxScore() {
+		int arrowMax;
+		switch (style) {
+		case IMPERIAL:
+			arrowMax = 9;
+			break;
+		case WORCESTER:
+			arrowMax = 5;
+			break;
+		default:
+			arrowMax = 10;
+			break;
+		}		
+		return arrowMax * arrows;
+	}
+
 }
